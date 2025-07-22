@@ -1,4 +1,5 @@
 import org.jetbrains.kotlin.compose.compiler.gradle.ComposeFeatureFlag
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
     alias(libs.plugins.androidApplication)
@@ -11,12 +12,12 @@ plugins {
 
 android {
     namespace = "com.nelsonxilv.gstoutimetable"
-    compileSdk = 35
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "com.nelsonxilv.gstoutimetable"
         minSdk = 26
-        targetSdk = 35
+        targetSdk = 36
         versionCode = 4
         versionName = "1.0.0"
 
@@ -49,9 +50,6 @@ android {
         sourceCompatibility = JavaVersion.VERSION_21
         targetCompatibility = JavaVersion.VERSION_21
     }
-    kotlinOptions {
-        jvmTarget = "21"
-    }
     buildFeatures {
         compose = true
     }
@@ -62,9 +60,14 @@ android {
     }
 }
 
+kotlin {
+    compilerOptions {
+        jvmTarget = JvmTarget.fromTarget("21")
+    }
+}
+
 composeCompiler {
     featureFlags.addAll(
-        ComposeFeatureFlag.StrongSkipping,
         ComposeFeatureFlag.OptimizeNonSkippingGroups
     )
 }

@@ -6,8 +6,7 @@ import com.nelsonxilv.gstoutimetable.data.mapper.MapperService
 import com.nelsonxilv.gstoutimetable.data.model.GroupDbModel
 import com.nelsonxilv.gstoutimetable.data.model.LessonDbModel
 import com.nelsonxilv.gstoutimetable.data.network.TimetableApiService
-import com.nelsonxilv.gstoutimetable.di.Dispatcher
-import com.nelsonxilv.gstoutimetable.di.TimetableDispatchers
+import com.nelsonxilv.gstoutimetable.di.IODispatcher
 import com.nelsonxilv.gstoutimetable.domain.TimetableRepository
 import com.nelsonxilv.gstoutimetable.domain.entity.Group
 import com.nelsonxilv.gstoutimetable.domain.entity.Lesson
@@ -28,7 +27,7 @@ class TimetableRepositoryImpl @Inject constructor(
     private val apiService: TimetableApiService,
     private val timetableDao: TimetableDao,
     private val mapper: MapperService,
-    @Dispatcher(TimetableDispatchers.IO) private val ioDispatcher: CoroutineDispatcher
+    @param:IODispatcher private val ioDispatcher: CoroutineDispatcher
 ) : TimetableRepository {
 
     override suspend fun getLessonList(groupName: String): Flow<List<Lesson>> =

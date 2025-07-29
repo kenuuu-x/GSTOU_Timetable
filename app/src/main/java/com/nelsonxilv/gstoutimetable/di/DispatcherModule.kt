@@ -12,11 +12,7 @@ import kotlinx.coroutines.Dispatchers
 object DispatcherModule {
 
     @Provides
-    @Dispatcher(TimetableDispatchers.IO)
+    @IODispatcher
     fun provideIODispatcher(): CoroutineDispatcher = Dispatchers.IO
-
-    @Provides
-    @Dispatcher(TimetableDispatchers.Default)
-    fun provideDefaultDispatcher(): CoroutineDispatcher = Dispatchers.Default
 
 }

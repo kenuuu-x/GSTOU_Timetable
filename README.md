@@ -12,10 +12,10 @@
 
 ## Основной функционал ✨
 
-- Просмотр расписания на сегодня, завтра и на неделю (скоро)
+- Просмотр расписания на сегодня, завтра и на неделю
 - Автоматическое кэширование расписания и групп (оффлайн режим)
 - Сохранение истории поиска
-- Фильтрация расписания по подгруппам
+- Фильтрация расписания по подгруппам и неделям
 - Отображение текущей даты и типа недели
 - Просмотр подробной информации по предмету
 
@@ -23,11 +23,10 @@
 
 <div align="center">
 
-<img src="https://github.com/user-attachments/assets/696e2f4d-d0af-4485-bf41-d94d2b7e21bf" width=25% height=25%>
-<img src="https://github.com/user-attachments/assets/0922451e-82b5-4315-acc0-edb2d61b92fc" width=25% height=25%>
-<img src="https://github.com/user-attachments/assets/44091ae7-871f-43e9-8de6-61f108112403" width=25% height=25%>
-<img src="https://github.com/user-attachments/assets/8268bdf6-4f9e-4889-ba99-936274d7a25d" width=25% height=25%>
-<img src="https://github.com/user-attachments/assets/39e95fa5-ed66-4be1-9fc6-788fae053be4" width=25% height=25%>
+<img src="https://github.com/user-attachments/assets/0aeca969-14e1-4e77-8e35-73482c20b9aa" width=23% height=23%>
+<img src="https://github.com/user-attachments/assets/6df44d85-8513-4648-8f66-5064505f22af" width=23% height=23%>
+<img src="https://github.com/user-attachments/assets/ea472b89-dc7e-4082-939f-7fdc57760f1f" width=23% height=23%>
+<img src="https://github.com/user-attachments/assets/c75ac0b4-60af-4647-b66b-7f73b4ae046d" width=23% height=23%>
 
 </div>
 
@@ -38,7 +37,7 @@
 ## License
 
 <pre>
-Copyright © 2024 nelson-xilv
+Copyright © 2024 kenuuu-x
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.

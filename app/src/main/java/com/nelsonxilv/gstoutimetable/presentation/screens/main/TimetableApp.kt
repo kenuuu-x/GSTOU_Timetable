@@ -75,7 +75,6 @@ private fun TimetableScreen(
     onEvent: (TimetableUiEvent) -> Unit = {}
 ) {
     val scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior()
-    var searchGroupName by rememberSaveable { mutableStateOf("") }
     var isSearchVisible by rememberSaveable { mutableStateOf(false) }
     val navigationState = rememberNavigationState()
 
@@ -120,13 +119,11 @@ private fun TimetableScreen(
                         savedGroupList = uiState.savedGroupList,
                         sharedTransitionScope = this@SharedTransitionLayout,
                         animatedVisibilityScope = this@AnimatedContent,
-                        onQueryChange = { groupName ->
-                            searchGroupName = groupName
+                        onSearch = { groupName ->
                             onEvent(TimetableUiEvent.OnGroupSearchClick(groupName))
                         },
                         onActiveChanged = { isSearchVisible = it },
                         onGroupItemClick = { groupName ->
-                            searchGroupName = groupName
                             isSearchVisible = false
                             onEvent(TimetableUiEvent.OnGroupSearchClick(groupName))
                         },
@@ -185,7 +182,7 @@ private fun TimetableContent(
                     onClick = { changeSearchVisibility(true) },
                     containerColor = MaterialTheme.colorScheme.secondaryContainer,
                     modifier = Modifier.sharedElement(
-                        state = rememberSharedContentState(key = SharedContentStateKey),
+                        sharedContentState = rememberSharedContentState(key = SharedContentStateKey),
                         animatedVisibilityScope = animatedVisibilityScope
                     )
                 ) {

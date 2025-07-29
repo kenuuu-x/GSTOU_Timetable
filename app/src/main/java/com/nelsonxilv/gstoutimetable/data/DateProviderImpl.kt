@@ -16,7 +16,10 @@ class DateProviderImpl @Inject constructor() : DateProvider {
 
     override fun getDayOfWeekNumber(dateType: DateType): Int {
         val dayOfWeek = getLocalDate(dateType).dayOfWeek
-        val ruLocale = Locale(LANGUAGE, COUNTRY)
+        val ruLocale = Locale.Builder()
+            .setLanguage(LANGUAGE)
+            .setRegion(COUNTRY)
+            .build()
 
         return dayOfWeek.get(WeekFields.of(ruLocale).dayOfWeek())
     }

@@ -18,4 +18,8 @@
     <string name="good">Понятно</string>
     <string name="number_of_classes">Количество занятий: %1$s</string>
     <string name="no_classes">Нет занятий</string>
+    <string name="lecture">Лек.</string>
+    <string name="lab">Лаб.</string>
+    <string name="practice">Практ.</string>
+    <string name="unknown">Неизвестно</string>
 </resources>

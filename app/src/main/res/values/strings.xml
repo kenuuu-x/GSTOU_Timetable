@@ -17,4 +17,8 @@
     <string name="good">Good</string>
     <string name="number_of_classes">Number of classes: %1$s</string>
     <string name="no_classes">No classes</string>
+    <string name="lecture">Lec.</string>
+    <string name="lab">Lab.</string>
+    <string name="practice">Prac.</string>
+    <string name="unknown">Unknown</string>
 </resources>

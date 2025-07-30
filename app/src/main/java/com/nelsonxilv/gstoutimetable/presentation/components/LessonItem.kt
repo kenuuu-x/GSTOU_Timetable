@@ -14,6 +14,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.style.TextDecoration
@@ -21,6 +22,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import com.nelsonxilv.gstoutimetable.R
+import com.nelsonxilv.gstoutimetable.domain.entity.ActivityType
 import com.nelsonxilv.gstoutimetable.domain.entity.Lesson
 import com.nelsonxilv.gstoutimetable.presentation.theme.DefaultShape
 import com.nelsonxilv.gstoutimetable.utils.customMarquee
@@ -64,7 +66,12 @@ fun LessonItem(
                 Text(
                     text = buildAnnotatedString {
                         withStyle(style = SpanStyle(textDecoration = TextDecoration.Underline)) {
-                            append(lesson.activityType)
+                            append(when(lesson.activityType) {
+                                ActivityType.LECTURE -> stringResource(id = R.string.lecture)
+                                ActivityType.LAB -> stringResource(id = R.string.lab)
+                                ActivityType.PRACTICE -> stringResource(id = R.string.practice)
+                                else -> stringResource(id = R.string.unknown)
+                            })
                         }
                         append(" ${lesson.auditorium}, ${lesson.teacher}")
                     },

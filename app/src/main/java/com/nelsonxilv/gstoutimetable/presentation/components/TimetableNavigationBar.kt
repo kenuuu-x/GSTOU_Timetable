@@ -45,8 +45,8 @@ import com.nelsonxilv.gstoutimetable.presentation.theme.GSTOUTimetableTheme
 @Composable
 fun TimetableNavigationBar(
     itemsListSize: Int,
-    selectedItemIndex: Int = 0,
     modifier: Modifier = Modifier,
+    selectedItemIndex: Int = 0,
     windowInsets: WindowInsets = NavigationBarDefaults.windowInsets,
     content: @Composable RowScope.() -> Unit
 ) {
@@ -60,7 +60,7 @@ fun TimetableNavigationBar(
             .background(MaterialTheme.colorScheme.surfaceContainer)
             .padding(4.dp),
     ) {
-        val width = maxWidth / itemsListSize
+        val width = this.maxWidth / itemsListSize
         val offset by animateDpAsState(
             targetValue = width * selectedItemIndex,
             label = "Offset"

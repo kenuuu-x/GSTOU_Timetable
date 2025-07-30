@@ -112,9 +112,9 @@ private fun DayItemPreview() {
         timeInterval = TimeInterval("9:00", "10:20"),
         activityType = ActivityType.LECTURE,
         period = 1,
-        dayOfWeek = DayOfWeek.MONDAY, // Wednesday
-        week = 1, // First week
-        subgroupNumber = 0 // Whole group
+        dayOfWeek = DayOfWeek.MONDAY,
+        week = 1,
+        subgroupNumber = 0
     )
     val lesson2 = Lesson(
         lessonId = 2,
@@ -125,9 +125,9 @@ private fun DayItemPreview() {
         timeInterval = TimeInterval("10:30", "11:50"),
         activityType = ActivityType.PRACTICE,
         period = 2,
-        dayOfWeek = DayOfWeek.MONDAY, // Wednesday
-        week = 1, // First week
-        subgroupNumber = 0 // Whole group
+        dayOfWeek = DayOfWeek.MONDAY,
+        week = 1,
+        subgroupNumber = 0
     )
 
     val day = Day(

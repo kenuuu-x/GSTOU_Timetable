@@ -15,7 +15,7 @@ class GetLessonListForWeekUseCase @Inject constructor(
         val allWeekDayList = dateProvider.getAllDaysOfWeek()
 
         return timetableRepository.getLessonList(groupName).map { lessons ->
-            val lessonsByDayOfWeek = lessons.groupBy { it.dayOfWeek }
+            val lessonsByDayOfWeek = lessons.groupBy { it.dayOfWeek.rawValue }
 
             allWeekDayList.map { (dayOfWeekNumber, dayName) ->
                 val dayLessons = lessonsByDayOfWeek[dayOfWeekNumber] ?: emptyList()

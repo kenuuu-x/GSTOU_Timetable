@@ -26,6 +26,7 @@ object DatabaseModule {
             DATABASE_NAME
         )
             .addMigrations(MIGRATION_1_2)
+            .fallbackToDestructiveMigration(true)
             .build()
     }
 

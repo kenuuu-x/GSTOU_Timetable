@@ -29,7 +29,7 @@ class GetLessonListForDayUseCase @Inject constructor(
         weekNumber: Int? = null
     ): List<Lesson> {
         return this.filter { lesson ->
-            (dayOfWeek == null || lesson.dayOfWeek == dayOfWeek) &&
+            (dayOfWeek == null || lesson.dayOfWeek.rawValue == dayOfWeek) &&
                     (weekNumber == null || lesson.week == weekNumber
                             || lesson.week == NO_WEEK)
         }.sortedBy { lesson ->

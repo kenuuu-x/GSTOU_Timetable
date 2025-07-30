@@ -14,9 +14,9 @@ import com.nelsonxilv.gstoutimetable.data.model.LessonDbModel
         GroupLessonCrossRef::class,
         GroupDbModel::class
     ],
-    version = 2
+    version = 3
 )
-@TypeConverters(ListConverter::class)
+@TypeConverters(ListConverter::class, EnumConverter::class)
 abstract class TimetableDatabase : RoomDatabase() {
     abstract fun lessonDao(): TimetableDao
 }

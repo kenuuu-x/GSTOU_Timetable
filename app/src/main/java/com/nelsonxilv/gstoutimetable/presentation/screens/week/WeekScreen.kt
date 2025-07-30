@@ -36,7 +36,9 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.nelsonxilv.gstoutimetable.R
+import com.nelsonxilv.gstoutimetable.domain.entity.ActivityType
 import com.nelsonxilv.gstoutimetable.domain.entity.Day
+import com.nelsonxilv.gstoutimetable.domain.entity.DayOfWeek
 import com.nelsonxilv.gstoutimetable.domain.entity.Lesson
 import com.nelsonxilv.gstoutimetable.domain.entity.TimeInterval
 import com.nelsonxilv.gstoutimetable.presentation.components.DayItem
@@ -197,9 +199,9 @@ private fun BasedWeekScreenPreview() {
             auditorium = "301",
             groupNames = listOf("ИВТ-21", "ПИ-21"),
             timeInterval = TimeInterval("9:00", "10:20"),
-            activityType = "Лекция",
+            activityType = ActivityType.LECTURE,
             period = 1,
-            dayOfWeek = 1,
+            dayOfWeek = DayOfWeek.MONDAY,
             week = 1,
             subgroupNumber = 0
         )
@@ -210,9 +212,9 @@ private fun BasedWeekScreenPreview() {
             auditorium = "302",
             groupNames = listOf("ИВТ-21"),
             timeInterval = TimeInterval("10:30", "11:50"),
-            activityType = "Практика",
+            activityType = ActivityType.PRACTICE,
             period = 2,
-            dayOfWeek = 1,
+            dayOfWeek = DayOfWeek.MONDAY,
             week = 1,
             subgroupNumber = 1
         )

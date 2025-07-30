@@ -32,11 +32,11 @@ class PeriodToTimeMapper @Inject constructor() {
         4 to TimeInterval("15:30", "16:50")
     )
 
-    fun getPeriodTime(period: Int, isFSPO: Boolean, isFriday: Boolean): TimeInterval {
-        return when {
-            isFSPO -> periodToTimeForFSPO[period]
-            isFriday -> fridayPeriodToTime[period]
-            else -> periodToTime[period]
+    fun getPeriodTime(period: Int, scheduleType: ScheduleType): TimeInterval {
+        return when(scheduleType) {
+            ScheduleType.FSPO -> periodToTimeForFSPO[period]
+            ScheduleType.FRIDAY_STANDARD -> fridayPeriodToTime[period]
+            ScheduleType.STANDARD -> periodToTime[period]
         } ?: TimeInterval("00:00", "00:00")
     }
 }

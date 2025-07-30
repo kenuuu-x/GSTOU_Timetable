@@ -39,7 +39,7 @@ fun FullSearchBarContent(
     savedGroupList: List<Group>,
     sharedTransitionScope: SharedTransitionScope,
     animatedVisibilityScope: AnimatedVisibilityScope,
-    onQueryChange: (String) -> Unit,
+    onSearch: (String) -> Unit,
     onActiveChanged: (Boolean) -> Unit,
     onGroupItemClick: (String) -> Unit,
     onClearIconButtonClick: (String) -> Unit,
@@ -48,13 +48,13 @@ fun FullSearchBarContent(
     with(sharedTransitionScope) {
         Column(
             modifier = modifier.sharedElement(
-                state = rememberSharedContentState(key = SharedContentStateKey),
+                sharedContentState = rememberSharedContentState(key = SharedContentStateKey),
                 animatedVisibilityScope = animatedVisibilityScope
             )
         ) {
             FullSearchBar(
                 savedGroups = savedGroupList,
-                onQueryChange = { onQueryChange(it) },
+                onSearch = { onSearch(it) },
                 onActiveChanged = { onActiveChanged(it) },
                 onGroupItemClick = { onGroupItemClick(it) },
                 onClearIconButtonClick = { onClearIconButtonClick(it) },
@@ -67,7 +67,7 @@ fun FullSearchBarContent(
 @Composable
 private fun FullSearchBar(
     savedGroups: List<Group>,
-    onQueryChange: (String) -> Unit,
+    onSearch: (String) -> Unit,
     onActiveChanged: (Boolean) -> Unit,
     onGroupItemClick: (String) -> Unit,
     onClearIconButtonClick: (String) -> Unit,
@@ -88,7 +88,7 @@ private fun FullSearchBar(
                 query = searchText,
                 onQueryChange = { query -> searchText = query },
                 onSearch = { query ->
-                    onQueryChange(query)
+                    onSearch(query)
                     onActiveChanged(false)
                 },
                 expanded = true,

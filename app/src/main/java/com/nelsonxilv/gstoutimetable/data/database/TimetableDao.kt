@@ -13,15 +13,15 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface TimetableDao {
 
-    @Query("SELECT * FROM groups")
+    @Query("SELECT * FROM student_groups")
     fun getAllGroups(): Flow<List<GroupDbModel>>
 
     @Transaction
-    @Query("SELECT * FROM groups WHERE groupName = :groupName")
+    @Query("SELECT * FROM student_groups WHERE groupName = :groupName")
     suspend fun getGroupWithLessons(groupName: String): GroupWithLessons?
 
     @Transaction
-    @Query("SELECT * FROM groups WHERE groupName = :groupName")
+    @Query("SELECT * FROM student_groups WHERE groupName = :groupName")
     fun getGroupWithLessonsFlow(groupName: String): Flow<GroupWithLessons?>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
@@ -56,7 +56,7 @@ interface TimetableDao {
     @Delete
     suspend fun deleteLessons(lessonIds: List<LessonDbModel>)
 
-    @Query("DELETE FROM groups WHERE groupName = :groupName")
+    @Query("DELETE FROM student_groups WHERE groupName = :groupName")
     suspend fun deleteGroup(groupName: String)
 
     @Query("DELETE FROM lesson_group_cross_ref WHERE groupName = :groupName")

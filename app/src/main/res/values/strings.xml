@@ -15,8 +15,10 @@
     <string name="welcome">Welcome</string>
     <string name="app_update_info_message">In order not to miss updates and keep up to date with all the news related to the application, you can subscribe to the Telegram channel or follow the project on GitHub.</string>
     <string name="good">Good</string>
-    <string name="telegram" translatable="false">Telegram</string>
-    <string name="github" translatable="false">GitHub</string>
     <string name="number_of_classes">Number of classes: %1$s</string>
     <string name="no_classes">No classes</string>
+    <string name="lecture">Lec.</string>
+    <string name="lab">Lab.</string>
+    <string name="practice">Prac.</string>
+    <string name="unknown">Unknown</string>
 </resources>

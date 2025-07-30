@@ -24,7 +24,7 @@ import javax.inject.Inject
 class WeekViewModel @Inject constructor(
     private val getLessonsListForWeekUseCase: GetLessonListForWeekUseCase,
     private val getDateUseCase: GetDateUseCase,
-    @DefaultCoroutineExceptionHandler
+    @param:DefaultCoroutineExceptionHandler
     private val coroutineExceptionHandler: CoroutineExceptionHandler
 ) : BaseViewModel<WeekUiState, WeekUiEvent>(WeekUiState()) {
 

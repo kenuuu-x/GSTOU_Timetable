@@ -2,6 +2,7 @@ package com.nelsonxilv.gstoutimetable.di
 
 import android.content.Context
 import androidx.room.Room
+import com.nelsonxilv.gstoutimetable.data.database.MIGRATION_1_2
 import com.nelsonxilv.gstoutimetable.data.database.TimetableDatabase
 import dagger.Module
 import dagger.Provides
@@ -23,7 +24,10 @@ object DatabaseModule {
             application.applicationContext,
             TimetableDatabase::class.java,
             DATABASE_NAME
-        ).build()
+        )
+            .addMigrations(MIGRATION_1_2)
+            .fallbackToDestructiveMigration(true)
+            .build()
     }
 
     @Provides

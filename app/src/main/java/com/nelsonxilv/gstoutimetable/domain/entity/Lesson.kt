@@ -7,9 +7,9 @@ data class Lesson(
     val auditorium: String,
     val groupNames: List<String>,
     val timeInterval: TimeInterval,
-    val activityType: String,
+    val activityType: ActivityType,
     val period: Int,
-    val dayOfWeek: Int,
+    val dayOfWeek: DayOfWeek,
     val week: Int,
     val subgroupNumber: Int,
 )

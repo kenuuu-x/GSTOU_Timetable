@@ -5,26 +5,26 @@ import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import android.widget.Toast
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowDropDown
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.FilterChip
 import androidx.compose.material3.Icon
-import androidx.compose.material3.Surface
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -43,8 +43,11 @@ import com.nelsonxilv.gstoutimetable.domain.entity.Lesson
 import com.nelsonxilv.gstoutimetable.domain.entity.TimeInterval
 import com.nelsonxilv.gstoutimetable.presentation.components.DayItem
 import com.nelsonxilv.gstoutimetable.presentation.components.SubgroupFilterChips
+import com.nelsonxilv.gstoutimetable.presentation.components.TimetableNavBarItem
+import com.nelsonxilv.gstoutimetable.presentation.components.TimetableNavigationBar
 import com.nelsonxilv.gstoutimetable.presentation.components.content.ContentContainer
 import com.nelsonxilv.gstoutimetable.presentation.components.content.ContentContainerOption
+import com.nelsonxilv.gstoutimetable.presentation.navigation.NavigationItem
 import com.nelsonxilv.gstoutimetable.presentation.screens.week.contract.WeekUiEvent
 import com.nelsonxilv.gstoutimetable.presentation.screens.week.contract.WeekUiState
 import com.nelsonxilv.gstoutimetable.presentation.theme.GSTOUTimetableTheme
@@ -112,27 +115,28 @@ fun WeekContent(
                 modifier = Modifier.padding(contentPadding)
             )
 
-            targetState.daysWithFilteredLessons.isNotEmpty() -> Column(
+            targetState.daysWithFilteredLessons.isNotEmpty() -> LazyColumn(
+                modifier = Modifier.fillMaxSize(),
+                contentPadding = contentPadding,
                 horizontalAlignment = Alignment.CenterHorizontally,
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(contentPadding)
-                    .verticalScroll(state = rememberScrollState())
             ) {
-                WeekFilterBar(
-                    currentWeekNum = targetState.selectedWeekNumber,
-                    showFilterChips = targetState.showFilterChips,
-                    itemMenuClick = {
-                        onEvent(WeekUiEvent.OnItemMenuClick(it))
-                    },
-                    onFilterChipClick = {
-                        onEvent(WeekUiEvent.OnSubgroupChipClick(it))
-                    }
-                )
-
-                uiState.daysWithFilteredLessons.forEach { day ->
-                    DayItem(day = day)
+                item {
+                    WeekFilterBar(
+                        currentWeekNum = targetState.selectedWeekNumber,
+                        showFilterChips = targetState.showFilterChips,
+                        itemMenuClick = {
+                            onEvent(WeekUiEvent.OnItemMenuClick(it))
+                        },
+                        onFilterChipClick = {
+                            onEvent(WeekUiEvent.OnSubgroupChipClick(it))
+                        }
+                    )
                 }
+
+                items(
+                    items = uiState.daysWithFilteredLessons,
+                    key = { it.name }
+                ) { day -> DayItem(day) }
             }
         }
     }
@@ -234,8 +238,31 @@ private fun BasedWeekScreenPreview() {
             day.copy(name = "Воскресенье", lessons = emptyList()),
         )
         val weekUiState = WeekUiState(days = listDay, daysWithFilteredLessons = listDay)
-        Surface {
-            WeekContent(uiState = weekUiState)
+        Scaffold(
+            bottomBar = {
+                var selectedItem by remember { mutableIntStateOf(0) }
+                val items = listOf(
+                    NavigationItem.Today,
+                    NavigationItem.Tomorrow,
+                )
+
+                TimetableNavigationBar(
+                    itemsListSize = items.size,
+                    selectedItemIndex = selectedItem
+                ) {
+                    items.forEachIndexed { index, item ->
+                        TimetableNavBarItem(
+                            text = stringResource(item.titleResId),
+                            selected = selectedItem == index,
+                            onClick = {
+                                selectedItem = index
+                            }
+                        )
+                    }
+                }
+            }
+        ) { paddingValues ->
+            WeekContent(uiState = weekUiState, contentPadding = paddingValues)
         }
     }
 }

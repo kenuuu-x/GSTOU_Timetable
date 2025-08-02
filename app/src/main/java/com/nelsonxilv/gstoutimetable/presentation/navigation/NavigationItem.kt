@@ -10,7 +10,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 sealed class NavigationItem<T : Any>(
     val route: T,
-    @StringRes val titleResId: Int,
+    @param:StringRes val titleResId: Int,
 ) {
 
     @Serializable
